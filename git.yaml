@@ -22,6 +22,10 @@ services:
       - ${TAUTULLI_MCP_PORT}:${TAUTULLI_MCP_PORT}
       - ${UNIFI_MCP_PORT}:${UNIFI_MCP_PORT}
       - ${UNRAID_MCP_PORT}:${UNRAID_MCP_PORT}
+      - ${SONARR_MCP_PORT}:${SONARR_MCP_PORT}
+      - ${RADARR_MCP_PORT}:${RADARR_MCP_PORT}
+      - ${LIDARR_MCP_PORT}:${LIDARR_MCP_PORT}
+      - ${ABS_MCP_PORT}:${ABS_MCP_PORT}
     networks:
       - yarr-mcp-network
 networks:

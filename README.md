@@ -42,17 +42,37 @@ This project currently includes the following MCP servers:
     *   Features: List indexers, get indexer details, search releases, test indexers, list applications, and check system status.
     *   See `src/prowlarr-mcp/README.md` for detailed setup and usage.
 
-8.  **Unifi MCP Server (`unifi-mcp`)** 🌐
+8.  **Sonarr MCP Server (`sonarr-mcp`)** 📺
+    *   Interacts with a Sonarr instance for TV series management.
+    *   Features: List/search/add series, get episodes, season status, download queue, quality profiles, root folders, system status.
+    *   See `src/sonarr-mcp/README.md` for detailed setup and usage.
+
+9.  **Radarr MCP Server (`radarr-mcp`)** 🎥
+    *   Interacts with a Radarr instance for movie management.
+    *   Features: List/search/add movies, download queue, quality profiles, root folders, system status.
+    *   See `src/radarr-mcp/README.md` for detailed setup and usage.
+
+10. **Lidarr MCP Server (`lidarr-mcp`)** 🎵
+    *   Interacts with a Lidarr instance for music management.
+    *   Features: List/search/add artists, get albums, download queue, quality/metadata profiles, root folders, system status.
+    *   See `src/lidarr-mcp/README.md` for detailed setup and usage.
+
+11. **Unifi MCP Server (`unifi-mcp`)** 🌐
     *   Connects to the Unifi Site Manager API to provide insights into your network.
     *   Features: List hosts, sites, devices, get ISP metrics (EA), and manage SD-WAN configurations (EA).
     *   See `src/unifi-mcp/README.md` for detailed setup and usage.
 
-9.  **Unraid MCP Server (`unraid-mcp`)** 💾
+12. **Unraid MCP Server (`unraid-mcp`)** 💾
     *   Interfaces with an Unraid server's GraphQL API for system information and management.
     *   Features: Get system info, array status, network config, Docker container/VM management, list shares, notifications, and logs.
     *   See `src/unraid-mcp/README.md` for detailed setup and usage.
 
-10. **Gotify MCP Server (`gotify-mcp`)** 🔔
+14. **Audiobookshelf MCP Server (`audiobookshelf-mcp`)** 📚
+    *   Interacts with an Audiobookshelf instance for audiobook library management and playback tracking.
+    *   Features: Browse libraries, search items, get item details with chapters, track/update playback progress (sync from external players), view listening sessions and stats.
+    *   See `src/audiobookshelf-mcp/README.md` for detailed setup and usage.
+
+15. **Gotify MCP Server (`gotify-mcp`)** 🔔
     *   Sends messages and manages a Gotify push notification server.
     *   Features: Create messages (requires app_token per call), manage applications and clients, get server health/version.
     *   See `src/gotify-mcp/README.md` for detailed setup and usage.
@@ -129,6 +149,21 @@ This project currently includes the following MCP servers:
     # PORTAINER_MCP_LOG_LEVEL=INFO
     # PORTAINER_MCP_LOG_FILE=portainer_mcp.log
 
+    # --- Sonarr ---
+    SONARR_URL=http://sonarr_host:8989
+    SONARR_API_KEY=your_sonarr_api_key
+    # SONARR_MCP_PORT=6974
+
+    # --- Radarr ---
+    RADARR_URL=http://radarr_host:7878
+    RADARR_API_KEY=your_radarr_api_key
+    # RADARR_MCP_PORT=6975
+
+    # --- Lidarr ---
+    LIDARR_URL=http://lidarr_host:8686
+    LIDARR_API_KEY=your_lidarr_api_key
+    # LIDARR_MCP_PORT=6976
+
     # --- Prowlarr ---
     PROWLARR_URL=http://prowlarr_host:9696
     PROWLARR_API_KEY=your_prowlarr_api_key
@@ -150,6 +185,12 @@ This project currently includes the following MCP servers:
     # UNRAID_MCP_PORT=6970
     # UNRAID_MCP_LOG_LEVEL=INFO
     # UNRAID_MCP_LOG_FILE=unraid_mcp.log
+
+    # --- Audiobookshelf ---
+    ABS_URL=https://your-audiobookshelf-instance.example.com
+    ABS_TOKEN=your_audiobookshelf_api_token
+    # ABS_MCP_PORT=6977
+    # ABS_MCP_LOG_LEVEL=INFO
 
     # --- Gotify ---
     GOTIFY_URL=http://gotify_host
@@ -293,12 +334,15 @@ Ensure the ports you define in `.env` are free on your host machine or adjust th
 The Docker setup can manage the following MCP services (found in `src/`):
 
 - `gotify-mcp`
+- `lidarr-mcp`
 - `overseerr-mcp`
 - `plex-mcp`
 - `portainer-mcp`
 - `prowlarr-mcp`
 - `qbittorrent-mcp`
+- `radarr-mcp`
 - `sabnzbd-mcp`
+- `sonarr-mcp`
 - `tautulli-mcp`
 - `unifi-mcp`
 - `unraid-mcp`
@@ -335,6 +379,18 @@ From the `yarr-mcp` project root, run the desired server(s):
     ```bash
     python src/portainer-mcp/portainer-mcp-server.py
     ```
+*   **Sonarr Server:**
+    ```bash
+    python src/sonarr-mcp/sonarr-mcp-server.py
+    ```
+*   **Radarr Server:**
+    ```bash
+    python src/radarr-mcp/radarr-mcp-server.py
+    ```
+*   **Lidarr Server:**
+    ```bash
+    python src/lidarr-mcp/lidarr-mcp-server.py
+    ```
 *   **Prowlarr Server:**
     ```bash
     python src/prowlarr-mcp/prowlarr-mcp-server.py
@@ -346,6 +402,10 @@ From the `yarr-mcp` project root, run the desired server(s):
 *   **Unraid Server:**
     ```bash
     python src/unraid-mcp/unraid-mcp-server.py
+    ```
+*   **Audiobookshelf Server:**
+    ```bash
+    python src/audiobookshelf-mcp/audiobookshelf-mcp-server.py
     ```
 *   **Gotify Server:**
     ```bash
